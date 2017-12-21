@@ -1,0 +1,2 @@
+module HostOrgsHelper
+end
