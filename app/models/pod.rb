@@ -1,3 +1,3 @@
 class Pod < ApplicationRecord
-  # belongs_to :travel_date
+  belongs_to :grantee
 end

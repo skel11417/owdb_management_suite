@@ -9,6 +9,7 @@
 require 'csv'
 
 Pod.destroy_all
+Grantee.destroy_all
 
 # add_pods
 # pods_arr = CSV.read("csv_files/07_groups.csv")
@@ -16,6 +17,9 @@ pods_arr = [["id", "travel_date_id", "arr_date", "country_id", "host_org_id", "g
 
 
 pods_arr.shift
+pods_num = pods_arr.count
+created_pods = 0
+puts "Creating pods"
 pods_arr.each do |pod|
   p = Pod.new
   p.id = pod[0]
@@ -28,4 +32,30 @@ pods_arr.each do |pod|
   p.confirmed = pod[7]
   p.notes = pod[8]
   p.save
+  created_pods += 1
 end
+puts "Created #{created_pods} of #{pods_num} pods"
+
+grantee_arr = a = CSV.read("csv_files/03_grantees.csv")
+puts "Creating grantees"
+created_grantees = 0
+grantee_arr.each do |grantee|
+  g = Grantee.new
+  g.id = grantee[0]
+  g.name = grantee[1]
+  g.abbr = grantee[2]
+  g.save
+  created_grantees += 1
+end
+puts "Created #{created_grantees} of #{grantee_arr.count} grantees"
+
+countries_arr = CSV.read("csv_files/04_countries.csv")
+puts "Creating countries"
+countries_arr.each do |country|
+  c = Country.new
+  c.id = country[0]
+  c.name = country[1]
+  c.save
+  created_countries += 1
+end
+puts "Created #{created_countries} of #{country_arr.count} countries"

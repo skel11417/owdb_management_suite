@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221155102) do
+ActiveRecord::Schema.define(version: 20171221162742) do
+
+  create_table "grantees", force: :cascade do |t|
+    t.string   "name"
+    t.string   "abbr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "pods", force: :cascade do |t|
     t.integer  "travel_date_id"
