@@ -1,0 +1,17 @@
+<%= form_for(grantee) do |f| %>
+  <% if grantee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(grantee.errors.count, "error") %> prohibited this grantee from being saved:</h2>
+
+      <ul>
+      <% grantee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

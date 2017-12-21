@@ -1,0 +1,17 @@
+<%= form_for(travel_date) do |f| %>
+  <% if travel_date.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(travel_date.errors.count, "error") %> prohibited this travel_date from being saved:</h2>
+
+      <ul>
+      <% travel_date.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

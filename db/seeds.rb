@@ -11,6 +11,7 @@ require 'csv'
 Pod.destroy_all
 Grantee.destroy_all
 Country.destroy_all
+TravelDate.destroy_all
 
 # add_pods
 # pods_arr = CSV.read("csv_files/07_groups.csv")
@@ -61,3 +62,5 @@ country_arr.each do |country|
   created_countries += 1
 end
 puts "Created #{created_countries} of #{country_arr.count} countries"
+
+trvldate_arr = CSV.read("csv_files/06_travel_dates.csv")
