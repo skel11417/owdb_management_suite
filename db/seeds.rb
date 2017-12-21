@@ -12,6 +12,7 @@ Pod.destroy_all
 Grantee.destroy_all
 Country.destroy_all
 TravelDate.destroy_all
+State.destroy_all
 
 # add_pods
 # pods_arr = CSV.read("csv_files/07_groups.csv")
@@ -63,4 +64,28 @@ country_arr.each do |country|
 end
 puts "Created #{created_countries} of #{country_arr.count} countries"
 
-trvldate_arr = CSV.read("csv_files/06_travel_dates.csv")
+puts "Creating travel dates"
+created_dates = 0
+trvl_date_arr = CSV.read("csv_files/06_travel_dates.csv")
+trvl_date_arr.each do |date|
+  td = TravelDate.new
+  td.id = date[0]
+  td.date = date[1]
+  td.save
+  created_dates += 1
+end
+puts "Created #{created_dates} of #{trvl_date_arr.count} travel dates"
+
+puts "Creating states"
+created_states = 0
+state_arr = CSV.read("csv_files/01_states.csv")
+state_arr.shift
+state_arr.each do |state|
+  s = State.new
+  s.id = state[0]
+  s.abbr = state[1]
+  s.name = state[2]
+  s.save
+  created_states +=1
+end
+puts "Created #{created_states} of #{state_arr.count} states"
