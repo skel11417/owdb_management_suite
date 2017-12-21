@@ -10,6 +10,7 @@ require 'csv'
 
 Pod.destroy_all
 Grantee.destroy_all
+Country.destroy_all
 
 # add_pods
 # pods_arr = CSV.read("csv_files/07_groups.csv")
@@ -49,9 +50,10 @@ grantee_arr.each do |grantee|
 end
 puts "Created #{created_grantees} of #{grantee_arr.count} grantees"
 
-countries_arr = CSV.read("csv_files/04_countries.csv")
+country_arr = CSV.read("csv_files/04_countries.csv")
 puts "Creating countries"
-countries_arr.each do |country|
+created_countries = 0
+country_arr.each do |country|
   c = Country.new
   c.id = country[0]
   c.name = country[1]

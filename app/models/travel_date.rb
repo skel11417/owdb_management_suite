@@ -1,0 +1,2 @@
+class TravelDate < ApplicationRecord
+end
