@@ -21,71 +21,68 @@ pods_arr = [["id", "travel_date_id", "arr_date", "country_id", "host_org_id", "g
 
 pods_arr.shift
 pods_num = pods_arr.count
-created_pods = 0
-puts "Creating pods"
+puts "Creating #{pods_num} pods"
 pods_arr.each do |pod|
-  p = Pod.new
-  p.id = pod[0]
-  p.travel_date_id = pod[1]
-  p.arr_date = pod[2]
-  p.country_id = pod[3]
-  p.host_org_id = pod[4]
-  p.grantee_id = pod[5]
-  p.theme = pod[6]
-  p.confirmed = pod[7]
-  p.notes = pod[8]
-  p.save
-  created_pods += 1
+  puts pod
+  new_pod = Pod.new
+  new_pod.id = pod[0]
+  new_pod.travel_date_id = pod[1]
+  new_pod.arr_date = pod[2].to_date
+  new_pod.country_id = pod[3]
+  new_pod.host_org_id = pod[4]
+  new_pod.grantee_id = pod[5]
+  new_pod.theme = pod[6]
+  new_pod.confirmed = pod[7]
+  new_pod.notes = pod[8]
+  new_pod.save
 end
-puts "Created #{created_pods} of #{pods_num} pods"
-
-grantee_arr = a = CSV.read("csv_files/03_grantees.csv")
-puts "Creating grantees"
-created_grantees = 0
-grantee_arr.each do |grantee|
-  g = Grantee.new
-  g.id = grantee[0]
-  g.name = grantee[1]
-  g.abbr = grantee[2]
-  g.save
-  created_grantees += 1
-end
-puts "Created #{created_grantees} of #{grantee_arr.count} grantees"
-
-country_arr = CSV.read("csv_files/04_countries.csv")
-puts "Creating countries"
-created_countries = 0
-country_arr.each do |country|
-  c = Country.new
-  c.id = country[0]
-  c.name = country[1]
-  c.save
-  created_countries += 1
-end
-puts "Created #{created_countries} of #{country_arr.count} countries"
-
-puts "Creating travel dates"
-created_dates = 0
-trvl_date_arr = CSV.read("csv_files/06_travel_dates.csv")
-trvl_date_arr.each do |date|
-  td = TravelDate.new
-  td.id = date[0]
-  td.date = date[1]
-  td.save
-  created_dates += 1
-end
-puts "Created #{created_dates} of #{trvl_date_arr.count} travel dates"
-
-puts "Creating states"
-created_states = 0
-state_arr = CSV.read("csv_files/01_states.csv")
-state_arr.shift
-state_arr.each do |state|
-  s = State.new
-  s.id = state[0]
-  s.abbr = state[1]
-  s.name = state[2]
-  s.save
-  created_states +=1
-end
-puts "Created #{created_states} of #{state_arr.count} states"
+puts "Created #{Pod.all.count} of #{pods_num} pods"
+#
+# grantee_arr = a = CSV.read("csv_files/03_grantees.csv")
+# puts "Creating grantees"
+# grantee_arr.each do |grantee|
+#   g = Grantee.new
+#   g.id = grantee[0]
+#   g.name = grantee[1]
+#   g.abbr = grantee[2]
+#   g.save
+# end
+# puts "Created #{Grantee.all.count} of #{grantee_arr.count} grantees"
+#
+# country_arr = CSV.read("csv_files/04_countries.csv")
+# puts "Creating countries"
+# created_countries = 0
+# country_arr.each do |country|
+#   c = Country.new
+#   c.id = country[0]
+#   c.name = country[1]
+#   c.save
+#   created_countries += 1
+# end
+# puts "Created #{created_countries} of #{country_arr.count} countries"
+#
+# puts "Creating travel dates"
+# created_dates = 0
+# trvl_date_arr = CSV.read("csv_files/06_travel_dates.csv")
+# trvl_date_arr.each do |date|
+#   td = TravelDate.new
+#   td.id = date[0]
+#   td.date = date[1]
+#   td.save
+#   created_dates += 1
+# end
+# puts "Created #{created_dates} of #{trvl_date_arr.count} travel dates"
+#
+# puts "Creating states"
+# created_states = 0
+# state_arr = CSV.read("csv_files/01_states.csv")
+# state_arr.shift
+# state_arr.each do |state|
+#   s = State.new
+#   s.id = state[0]
+#   s.abbr = state[1]
+#   s.name = state[2]
+#   s.save
+#   created_states +=1
+# end
+# puts "Created #{created_states} of #{state_arr.count} states"
