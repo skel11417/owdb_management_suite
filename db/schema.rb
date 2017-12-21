@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221173216) do
+ActiveRecord::Schema.define(version: 20171221183303) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20171221173216) do
     t.integer  "host_org_id"
     t.integer  "grantee_id"
     t.string   "theme"
-    t.boolean  "confirmed",      default: false
+    t.boolean  "confirmed"
     t.text     "notes"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "states", force: :cascade do |t|
