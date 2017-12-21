@@ -1,18 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require 'csv'
 
-Pod.destroy_all
 Grantee.destroy_all
 Country.destroy_all
 TravelDate.destroy_all
 State.destroy_all
+Pod.destroy_all
+City.destroy_all
 
 
 grantee_arr = a = CSV.read("csv_files/03_grantees.csv")
@@ -62,10 +55,8 @@ puts "Created #{State.all.count} of #{state_arr.count} states"
 # add_pods
 pods_arr = CSV.read("csv_files/07_groups.csv")
 pods_arr.shift
-pods_num = pods_arr.count
-puts "Creating #{pods_num} pods"
+puts "Creating #{pods_arr.count} pods"
 pods_arr.each do |pod|
-  puts pod
   new_pod = Pod.new
   new_pod.id = pod[0]
   new_pod.travel_date_id = pod[1]
@@ -78,4 +69,30 @@ pods_arr.each do |pod|
   new_pod.notes = pod[8]
   new_pod.save
 end
-puts "Created #{Pod.all.count} of #{pods_num} pods"
+puts "Created #{Pod.all.count} of #{pods_arr.count} pods"
+
+host_arr = CSV.read("csv_files/05_host_orgs.csv")
+host_arr.shift
+puts "Creating #{host_arr.count} Host Organizations"
+host_arr.each do |host|
+	h = HostOrg.new
+	h.id = host[0]
+	h.name = host[1]
+	h.city_id = host[2]
+	h.save
+end
+puts "Created #{HostOrg.all.count} of #{host_arr.count} host organizations"
+
+
+# add cities
+# city_arr = CSV.read("csv_files/02_cities.csv")
+# city_arr.shift
+# puts "Creating #{city_arr.count} cities"
+# city_arr.each do |city|
+#   c = City.new
+#   c.id = city[1]
+#   c.name = city[2]
+#   c.state_id = city[3]
+#   c.save
+# end
+# puts "Created #{City.all.count} of #{city_arr.count}"
