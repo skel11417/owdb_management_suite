@@ -1,0 +1,34 @@
+<h3><%= link_to travel_date.full_date, travel_date %></h3>
+<table class="table table-bordered table-active table-hover">
+  <thead>
+    <tr>
+      <th>Arrival Date </th>
+      <th>Country </th>
+      <th>Location </th>
+      <th>Local Host </th>
+      <th>Grantee </th>
+      <th>Theme </th>
+      <th>Status</th>
+    </tr>
+  </thead>
+<tbody>
+<% travel_date.pods.each do |pod| %>
+  <% if pod.confirmed %>
+    <tr onclick="window.location='<%= pod_path(pod) %>';">
+  <% else %>
+    <tr class="warning">
+  <% end %>
+    <% if travel_date.odd_dates? %>
+      <td><%= pod.arr_date %></td>
+    <% end %>
+    <td><%= pod.country.name %></td>
+    <td><%= pod.host_org.get_city_state %></td>
+    <td><%= pod.host_org.name %></td>
+    <td><%= pod.grantee.abbr %></td>
+    <td><%= pod.theme %></td>
+    <td><%= pod.confirmed? %> </td>
+  </tr>
+<% end %>
+</tbody>
+
+</table>

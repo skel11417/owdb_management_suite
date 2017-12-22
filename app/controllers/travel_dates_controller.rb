@@ -4,7 +4,7 @@ class TravelDatesController < ApplicationController
   # GET /travel_dates
   # GET /travel_dates.json
   def index
-    @travel_dates = TravelDate.all
+    @travel_dates = TravelDate.all.order(:date)
   end
 
   # GET /travel_dates/1

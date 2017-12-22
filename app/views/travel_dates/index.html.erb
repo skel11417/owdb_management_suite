@@ -1,6 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Travel Dates</h1>
+<p><%= link_to 'New Travel Date', new_travel_date_path %></p>
+<br>
+<% @travel_dates.each do |travel_date| %>
+  <%= render partial: "pods", locals: {travel_date: travel_date} %>
+  <br>
+  <td><%= link_to 'Show', travel_date %></td>
+  <td><%= link_to 'Edit', edit_travel_date_path(travel_date) %></td>
+  <br>
+<% end %>
 
 <table>
   <thead>
@@ -10,16 +19,9 @@
   </thead>
 
   <tbody>
-    <% @travel_dates.each do |travel_date| %>
-      <tr>
-        <td><%= link_to 'Show', travel_date %></td>
-        <td><%= link_to 'Edit', edit_travel_date_path(travel_date) %></td>
-        <td><%= link_to 'Destroy', travel_date, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <tr>
       </tr>
-    <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Travel Date', new_travel_date_path %>
