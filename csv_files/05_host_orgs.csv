@@ -57,7 +57,6 @@ local_host_id,name,city_id
 56,Mid-Cities Pacesetters RC,2334
 57,Modesto Sister States,22546
 58,Moscow School,30093
-58,Moscow School,6313
 59,Norfolk Sister Cities Association,24435
 60,Northampton Community College,2866
 61,Northern Nevada International Center,28632
@@ -76,10 +75,6 @@ local_host_id,name,city_id
 74,Stevens Point-Rostov Veliky Sister City Project,32738
 75,Suzanne Mitchell?,25246
 76,TBD,38148
-76,TBD,38148
-76,TBD,38148
-76,TBD,38148
-76,TBD,3604
 77,The Archangel Committee,27632
 78,The Palmetto Council for International Visitors,7238
 79,Tulsa Global Alliance,34527
@@ -97,5 +92,3 @@ local_host_id,name,city_id
 91,World Trade Center Institute,1841
 92,WorldChicago,6313
 93,WorldMontana,15098
-93,WorldMontana,15098
-#N/A,,16767
