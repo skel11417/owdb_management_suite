@@ -5,11 +5,11 @@ class TravelDate < ApplicationRecord
     date.strftime("%B %-d, %Y")
   end
 
-  def odd_dates?
+  def same_dates?
+    dates = []
     pods.each do |pod|
-      if date != pod.arr_date
-        return false
-      end
+      dates << pod.arr_date
     end
+    dates.all? {|x| x == dates[0]}
   end
 end

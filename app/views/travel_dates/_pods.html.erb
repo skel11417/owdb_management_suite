@@ -2,7 +2,9 @@
 <table class="table table-bordered table-active table-hover">
   <thead>
     <tr>
-      <th>Arrival Date </th>
+      <% unless travel_date.same_dates? %>
+        <th>Arrival Date </th>
+      <% end %>
       <th>Country </th>
       <th>Location </th>
       <th>Local Host </th>
@@ -18,10 +20,10 @@
   <% else %>
     <tr class="warning">
   <% end %>
-    <% if travel_date.odd_dates? %>
+    <% unless travel_date.same_dates? %>
       <td><%= pod.arr_date %></td>
     <% end %>
-    <td><%= pod.country.name %></td>
+    <td><%= pod.country.name%> <%= image_tag(pod.country.get_img_url, size: "30") %></td>
     <td><%= pod.host_org.get_city_state %></td>
     <td><%= pod.host_org.name %></td>
     <td><%= pod.grantee.abbr %></td>

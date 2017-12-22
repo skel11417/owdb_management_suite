@@ -7,4 +7,5 @@ class Pod < ApplicationRecord
   def confirmed?
     confirmed ? "Confirmed" : "Unconfirmed"
   end
+
 end

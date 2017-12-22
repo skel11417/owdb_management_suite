@@ -6,9 +6,6 @@
 <% @travel_dates.each do |travel_date| %>
   <%= render partial: "pods", locals: {travel_date: travel_date} %>
   <br>
-  <td><%= link_to 'Show', travel_date %></td>
-  <td><%= link_to 'Edit', edit_travel_date_path(travel_date) %></td>
-  <br>
 <% end %>
 
 <table>
