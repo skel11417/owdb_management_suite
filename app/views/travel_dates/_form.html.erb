@@ -10,8 +10,14 @@
       </ul>
     </div>
   <% end %>
-
+  <table>
+    <tr>
+      <td><b><%= f.label :date, "Travel Date:" %></b></td>
+      <td> <%= f.date_field :date %> </td>
+    </tr>
+  </table>
   <div class="actions">
     <%= f.submit %>
   </div>
+  <%= render partial: "pods", locals: {travel_date: @travel_date} %>
 <% end %>

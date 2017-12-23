@@ -7,7 +7,7 @@ class Pod < ApplicationRecord
   has_one :state, through: :city
 
   def confirmed?
-    confirmed ? "Confirmed" : "Unconfirmed"
+    confirmed ? "Confirmed" : "Pending"
   end
 
 end
