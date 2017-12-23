@@ -1,6 +1,7 @@
 class HostOrg < ApplicationRecord
   belongs_to :city
   has_many :grantees, through: :pods
+  has_many :pods
 
   def get_city_state
     if city.id == 38148

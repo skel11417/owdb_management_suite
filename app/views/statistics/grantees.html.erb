@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Count</th>
+      <th>Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @grantee_ranking.each do |grantee| %>
+    <tr>
+      <td><%= grantee.name %></td>
+      <td><%= grantee.pod_count %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

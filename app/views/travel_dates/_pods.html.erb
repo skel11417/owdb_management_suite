@@ -18,7 +18,7 @@
   <% if pod.confirmed %>
     <tr onclick="window.location='<%= pod_path(pod) %>';">
   <% else %>
-    <tr class="warning">
+    <tr onclick="window.location='<%= pod_path(pod) %>';" class="warning">
   <% end %>
     <% unless travel_date.same_dates? %>
       <td><%= pod.arr_date %></td>
