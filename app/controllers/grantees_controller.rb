@@ -4,7 +4,7 @@ class GranteesController < ApplicationController
   # GET /grantees
   # GET /grantees.json
   def index
-    @grantees = Grantee.all
+    @grantees = Grantee.all.order(:name)
   end
 
   # GET /grantees/1
