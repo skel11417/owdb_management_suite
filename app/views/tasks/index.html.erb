@@ -25,7 +25,7 @@
       <tr>
         <td><%= link_to task_type.name, task_type_path(task_type)  %></td>
         <% jan_pods.each do |pod| %>
-          <td> <%= check_box_tag %><%= task_type.task_status(pod) %> </td>
+          <td> <%= check_box_tag task_type.name, value="yes", task_type.task_status(pod) %><%= task_type.task_status(pod) %> </td>
         <% end %>
       </tr>
     <% end %>
