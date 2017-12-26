@@ -8,7 +8,7 @@ require 'csv'
 # Pod.destroy_all
 # HostOrg.destroy_all
 # City.destroy_all
-Task.destroy_all
+# Task.destroy_all
 
 # task_type_arr = CSV.read("csv_files/08_task_types.csv")
 # puts "Creating Task Types"
@@ -118,14 +118,14 @@ Task.destroy_all
 # puts "Created #{City.all.count} of #{city_arr.count}"
 
 # add tasks
-puts "Creating Tasks"
-Pod.all.each do |pod|
-  TaskType.all.each do |tl|
-    t = Task.new
-    t.task_type_id = tl.id
-    t.pod_id = pod.id
-    t.completed = false
-    t.save
-  end
-end
-puts "Created #{Task.all.count} of #{Pod.all.count * TaskType.all.count}"
+# puts "Creating Tasks"
+# Pod.all.each do |pod|
+#   TaskType.all.each do |tl|
+#     t = Task.new
+#     t.task_type_id = tl.id
+#     t.pod_id = pod.id
+#     t.completed = false
+#     t.save
+#   end
+# end
+# puts "Created #{Task.all.count} of #{Pod.all.count * TaskType.all.count}"

@@ -8,6 +8,12 @@ class Pod < ApplicationRecord
   has_many :tasks
   has_many :task_types, through: :tasks
 
+
+  def self.by_month(m)
+    month = Date.new(2018,m,1)
+    where(:arr_date => month..month.end_of_month)
+  end
+
   def confirmed?
     confirmed ? "Confirmed" : "Pending"
   end

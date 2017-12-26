@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get '/statistics', to: 'statistics#index'
   get '/statistics/states', to: 'statistics#states'
   get '/statistics/grantees', to: 'statistics#grantees'
-  resources :cities, :countries, :grantees, :host_orgs, :pods, :states, :travel_dates
+  resources :cities, :countries, :grantees, :host_orgs, :pods, :states, :task_types, :tasks, :travel_dates
 end
