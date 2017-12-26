@@ -2,19 +2,31 @@
 
 <h1>Tasks</h1>
 <%= render "topnav" %>
-pods = Pod.all.includes(:tasks, :task_types)
-<% jan_tasks = %>
-<table>
+<h3 class="text-center"><%= Date::MONTHNAMES[1] %></h3>
+<% jan_pods = @pods.by_month(1) %>
+<table class="table table-bordered table-active table-hover">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th></th>
+      <% jan_pods.each do |pod| %>
+        <th>
+          <div>
+            <%= pod.country.name%> <%= image_tag(pod.country.get_img_url, size: "30") %>
+            <br> <%= pod.short_date  %>
+            <br> <%= pod.host_org.get_city_state  %>
+          </div>
+        </th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @task_types.each do |task_type| %>
       <tr>
-        <td><%= task.task_type.name %></td>
+        <td><%= link_to task_type.name, task_type_path(task_type)  %></td>
+        <% jan_pods.each do |pod| %>
+          <td> <%= check_box_tag %><%= task_type.task_status(pod) %> </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

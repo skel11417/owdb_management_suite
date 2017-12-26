@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all
     @task_types = TaskType.all.order(:date_offset)
-    @pods = Pod.all.includes(:task, :task_type)
+    @pods = Pod.all.includes(:tasks, :task_types)
   end
 
   # GET /tasks/1

@@ -8,6 +8,17 @@ class Pod < ApplicationRecord
   has_many :tasks
   has_many :task_types, through: :tasks
 
+  def full_arr_date
+    arr_date.strftime("%B %-d, %Y")
+  end
+
+  def short_date
+    arr_date.strftime("%m-%d")
+  end
+
+  def task_status(task_type)
+    where(task_type_id: task_type.id).first.completed
+  end
 
   def self.by_month(m)
     month = Date.new(2018,m,1)
