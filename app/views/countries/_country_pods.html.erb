@@ -1,0 +1,29 @@
+    <h3><%= image_tag(country.get_img_url, size: "30") %> <%= link_to country.name, country %></h3>
+      <table class="table table-bordered table-active table-hover">
+        <thead>
+          <tr>
+            <th>Arrival Date </th>
+            <th>Location </th>
+            <th>Local Host </th>
+            <th>Grantee </th>
+            <th>Theme </th>
+            <th>Status</th>
+          </tr>
+        </thead>
+      <tbody>
+      <% country.pods.each do |pod| %>
+          <% if pod.confirmed %>
+            <tr onclick="window.location='<%= pod_path(pod) %>';">
+          <% else %>
+            <tr onclick="window.location='<%= pod_path(pod) %>';" class="warning">
+          <% end %>
+            <td><%= pod.short_date %></td>
+            <td><%= pod.host_org.get_city_state %></td>
+            <td><%= pod.host_org.name %></td>
+            <td><%= pod.grantee.abbr %></td>
+            <td><%= pod.theme %></td>
+            <td><%= pod.confirmed? %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>

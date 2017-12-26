@@ -2,39 +2,9 @@
 
 <h1>Countries</h1>
 <p><%= link_to 'New Country', new_country_path %></p>
-
 <% @countries.each do |country| %>
-<% if country.pods.exists? %>
-  <h3><%= link_to country.name, country %></h3>
-    <table class="table table-bordered table-active table-hover">
-      <thead>
-        <tr>
-          <th>Arrival Date </th>
-          <th>Country </th>
-          <th>Location </th>
-          <th>Local Host </th>
-          <th>Grantee </th>
-          <th>Theme </th>
-          <th>Status</th>
-        </tr>
-      </thead>
-    <tbody>
-    <% country.pods.each do |pod| %>
-        <% if pod.confirmed %>
-          <tr onclick="window.location='<%= pod_path(pod) %>';">
-        <% else %>
-          <tr onclick="window.location='<%= pod_path(pod) %>';" class="warning">
-        <% end %>
-          <td><%= pod.arr_date %></td>
-          <td><%= pod.country.name%> <%= image_tag(pod.country.get_img_url, size: "30") %></td>
-          <td><%= pod.host_org.get_city_state %></td>
-          <td><%= pod.host_org.name %></td>
-          <td><%= pod.grantee.abbr %></td>
-          <td><%= pod.theme %></td>
-          <td><%= pod.confirmed? %> </td>
-      </tr>
-      <% end %>
-      <% end %>
-    </tbody>
-    </table>
-    <% end %>
+  <% if country.pods.exists? %>
+    <%= render partial: "country_pods", locals: {country: country} %>
+  <% end %>
+
+<% end %>
