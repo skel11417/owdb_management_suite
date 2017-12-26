@@ -9,8 +9,9 @@
   <tbody>
     <% @grantee_ranking.each do |grantee| %>
     <tr>
-      <td><%= grantee.name %></td>
+      <td><%= link_to grantee.name, grantee_path(grantee.id) %></td>
       <td><%= grantee.pod_count %></td>
+      <td><%= ((grantee.pod_count / @pod_count) * 100).round(2) %>%</td>
     </tr>
     <% end %>
   </tbody>

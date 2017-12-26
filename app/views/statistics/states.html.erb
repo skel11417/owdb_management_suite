@@ -11,6 +11,7 @@
     <tr>
       <td><%= state.name %></td>
       <td><%= state.pod_count %></td>
+      <td><%= ((state.pod_count / @pod_count) * 100).round(2) %>%</td>
     </tr>
     <% end %>
   </tbody>
