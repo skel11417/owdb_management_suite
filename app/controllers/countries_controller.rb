@@ -5,6 +5,7 @@ class CountriesController < ApplicationController
   # GET /countries.json
   def index
     @countries = Country.all
+    @pods_by_country = Pod.all.order(:country_id)
   end
 
   # GET /countries/1
