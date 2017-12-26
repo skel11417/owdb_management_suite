@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221233808) do
+ActiveRecord::Schema.define(version: 20171226042519) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -57,6 +57,22 @@ ActiveRecord::Schema.define(version: 20171221233808) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "task_types", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "date_offset"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "task_type_id"
+    t.integer  "pod_id"
+    t.integer  "updated_by"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "completed"
   end
 
   create_table "travel_dates", force: :cascade do |t|
