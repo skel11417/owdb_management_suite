@@ -1,5 +1,6 @@
 class TravelDate < ApplicationRecord
-  has_many :pods
+  validates :date, presence: true
+  has_many :pods, dependent: :destroy
 
   def full_date
     date.strftime("%B %-d, %Y")

@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
-<%= render partial: "pods", locals: {travel_date: @travel_date} %>
-<%= link_to 'Edit', edit_travel_date_path(@travel_date) %> |
-<%= link_to 'Back', travel_dates_path %>
+<% if @travel_date.pods %>
+  <%= render partial: "pods", locals: {travel_date: @travel_date} %>
+<% end %>
+<%= button_to 'Add Pod', new_pod_path %>
 <br>
-<h4><%= link_to 'Deliverables', '#' %></h4>
+<%= link_to 'Edit', edit_travel_date_path(@travel_date) %> |
+<%= link_to 'Back', travel_dates_path %> |
+<td><%= link_to 'Delete Travel Date', state, method: :delete, data: { confirm: 'Are you sure you want to delete this travel date?
+                                                                                This will delete any associated pods.' } %></td>
+
+<br>
+<h3><%= link_to 'Deliverables', '#' %></h3>
 <h4>Recent Activity:</h4>

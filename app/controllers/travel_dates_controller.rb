@@ -69,6 +69,7 @@ class TravelDatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def travel_date_params
-      params.fetch(:travel_date, {})
+      # params.fetch(:travel_date, {:date})
+      params.require(:travel_date).permit(:date)
     end
 end
