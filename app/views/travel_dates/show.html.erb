@@ -6,9 +6,7 @@
 <br>
 <%= link_to 'Edit', edit_travel_date_path(@travel_date) %> |
 <%= link_to 'Back', travel_dates_path %> |
-<td><%= link_to 'Delete Travel Date', state, method: :delete, data: { confirm: 'Are you sure you want to delete this travel date?
-                                                                                This will delete any associated pods.' } %></td>
-
+<td><%= link_to 'Delete Travel Date', @travel_date, method: :delete, data: { confirm: 'Are you sure you want to delete this travel date? This will delete any associated pods.' } %></td>
 <br>
 <h3><%= link_to 'Deliverables', '#' %></h3>
 <h4>Recent Activity:</h4>

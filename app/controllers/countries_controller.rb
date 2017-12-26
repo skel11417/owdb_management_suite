@@ -20,6 +20,7 @@ class CountriesController < ApplicationController
 
   # GET /countries/1/edit
   def edit
+    
   end
 
   # POST /countries

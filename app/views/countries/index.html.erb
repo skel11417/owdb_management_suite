@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Countries</h1>
-<p><%= link_to 'New Country', new_country_path %></p>
 <% @countries.each do |country| %>
   <% if country.pods.exists? %>
     <%= render partial: "country_pods", locals: {country: country} %>
