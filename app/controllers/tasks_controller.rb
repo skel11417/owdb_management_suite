@@ -4,7 +4,6 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
     @task_types = TaskType.all.order(:date_offset)
     @pods = Pod.all.includes(:tasks, :task_types)
   end
@@ -73,4 +72,5 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:completed)
     end
+
 end

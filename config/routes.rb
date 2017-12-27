@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'dashboard#index'
   get '/dashboard', to: 'dashboard#index'
+  get '/checklist', to: 'checklist#index'
+  patch '/dashboard/tasks/:id', to: 'dashboard#update_task'
   get '/statistics', to: 'statistics#index'
   get '/statistics/states', to: 'statistics#states'
   get '/statistics/grantees', to: 'statistics#grantees'

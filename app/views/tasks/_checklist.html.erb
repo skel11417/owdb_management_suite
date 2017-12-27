@@ -1,0 +1,30 @@
+<h3 class="text-center"><%= Date::MONTHNAMES[2] %></h3>
+<% current_pods = @pods.by_month(month) %>
+ehat
+<table class="table table-bordered table-active table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <% current_pods.each do |pod| %>
+        <th>
+          <div>
+            <%= pod.country.name%> <%= image_tag(pod.country.get_img_url, size: "30") %>
+            <br> <%= pod.short_date  %>
+            <br> <%= pod.host_org.city_state  %>
+          </div>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_types.each do |task_type| %>
+      <tr>
+        <td><%= link_to task_type.name, task_type_path(task_type)  %></td>
+        <% current_pods.each do |pod| %>
+          <td>< <%= check_box_tag task_type.name, value="yes", task_type.task_status(pod) %><%= task_type.task_status(pod) %> </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

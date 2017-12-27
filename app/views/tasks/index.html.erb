@@ -2,35 +2,7 @@
 
 <h1>Tasks</h1>
 <%= render "topnav" %>
-<h3 class="text-center"><%= Date::MONTHNAMES[1] %></h3>
-<% jan_pods = @pods.by_month(1) %>
-<table class="table table-bordered table-active table-hover">
-  <thead>
-    <tr>
-      <th></th>
-      <% jan_pods.each do |pod| %>
-        <th>
-          <div>
-            <%= pod.country.name%> <%= image_tag(pod.country.get_img_url, size: "30") %>
-            <br> <%= pod.short_date  %>
-            <br> <%= pod.host_org.city_state  %>
-          </div>
-        </th>
-      <% end %>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @task_types.each do |task_type| %>
-      <tr>
-        <td><%= link_to task_type.name, task_type_path(task_type)  %></td>
-        <% jan_pods.each do |pod| %>
-          <td> <%= check_box_tag task_type.name, value="yes", task_type.task_status(pod) %><%= task_type.task_status(pod) %> </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: 'checklist', locals: {month: 2} %>
 
 <br>
 
