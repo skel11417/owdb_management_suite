@@ -1,0 +1,17 @@
+<h3>Deliverables Due:</h3>
+<% task_types.each do |task_type| %>
+  <% if task_type.tasks_due? %>
+    <b><%= task_type.name %>:</b>
+    <ol>
+      <% task_type.tasks.each do |task| %>
+        <% if task.due? and task.completed == false %>
+        <!-- Add form for each task -->
+        <% pod = task.pod %>
+          <li><%= image_tag(pod.country.get_img_url, size: "30") %>
+            <%= pod.country.name %>, <%= pod.host_org.name %> -
+          <%= pod.grantee.abbr %> <%= check_box_tag(pod, value = "1", checked = false, options = {}) %></li>
+        <% end %>
+      <% end %>
+    </ol>
+    <% end %>
+<% end %>
