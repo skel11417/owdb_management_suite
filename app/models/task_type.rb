@@ -33,8 +33,6 @@ class TaskType < ApplicationRecord
     false
   end
 
-  private
-
   def find_task(pod)
     tasks.where(pod_id: pod.id).first
   end

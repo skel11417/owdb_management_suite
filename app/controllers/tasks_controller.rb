@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :change_status, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
@@ -42,15 +42,32 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    @task = Task.find(params[:id])
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
+        format.html { redirect_to request.referrer, notice: 'Task was successfully updated.' }
+        format.json { render :index, status: :ok, location: @task }
       else
-        format.html { render :edit }
+        format.html { render :index }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def change_status
+    respond_to do |format|
+        # how to redirect_to current page?
+
+        if @task.completed
+          @task.update(:completed => false)
+          format.html { redirect_to request.referrer, notice: 'Task was successfully updated.' }
+        else
+          @task.update(:completed => true)
+          format.html { redirect_to request.referrer, notice: 'Task was successfully updated.' }
+        end
+    end
+
+
   end
 
   # DELETE /tasks/1
@@ -77,5 +94,6 @@ class TasksController < ApplicationController
     def set_month
       params[:month] ? params[:month].to_i : Date.today.month
     end
+
 
 end

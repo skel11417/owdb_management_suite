@@ -15,21 +15,32 @@
       <% end %>
     </tr>
   </thead>
-
+<!-- This requires the most refactoring of anything I've ever written anywhere -->
   <tbody>
     <% @task_types.each do |task_type| %>
       <tr>
         <td><%= link_to task_type.name, task_type_path(task_type)  %></td>
         <% current_pods.each do |pod| %>
+          <% task = task_type.find_task(pod) %>
+
           <% if task_type.task_status(pod) %>
-            <td class="success"><a href="#">&nbsp;</a></td>
+            <td class="success text-center">
+              <%= link_to '-', task_path(task), method: :patch %>
+
           <% elsif task_type.due_this_week?(pod) %>
-            <td class="warning"><a href="#">&nbsp;</a></td>
+            <td class="warning text-center">
+              <%= link_to '-', task_path(task), method: :patch %>
+
           <% elsif task_type.past_due?(pod) %>
-            <td class="danger"><a href="#">&nbsp;</a></td>
+            <td class="danger text-center">
+              <%= link_to '-', task_path(task), method: :patch %>
           <% else %>
-            <td><a href="#">&nbsp;</a></td>
+            <td class="text-center">
+              <%= link_to '-', task_path(task), method: :patch %>
+
           <% end %>
+        </td>
+
         <% end %>
       </tr>
     <% end %>
