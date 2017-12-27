@@ -3,7 +3,7 @@ class HostOrg < ApplicationRecord
   has_many :grantees, through: :pods
   has_many :pods
 
-  def get_city_state
+  def city_state
     if city.id == 38148
       "TBD"
     else

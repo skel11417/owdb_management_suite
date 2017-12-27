@@ -2,16 +2,15 @@
 <% task_types.each do |task_type| %>
   <% if task_type.tasks_due? %>
     <b><%= task_type.name %>:</b>
-    <ol>
+    <!-- <ol> -->
+    <table class="fixed">
       <% task_type.tasks.each do |task| %>
         <% if task.due? and task.completed == false %>
         <!-- Add form for each task -->
-        <% pod = task.pod %>
-          <li><%= image_tag(pod.country.get_img_url, size: "30") %>
-            <%= pod.country.name %>, <%= pod.host_org.name %> -
-          <%= pod.grantee.abbr %> <%= check_box_tag(pod, value = "1", checked = false, options = {}) %></li>
+            <%= render partial: 'deliverable_form', locals: {task: task, pod: task.pod} %>
         <% end %>
       <% end %>
-    </ol>
+    </table>
+    <!-- </ol> -->
     <% end %>
 <% end %>

@@ -13,7 +13,7 @@
           <div>
             <%= pod.country.name%> <%= image_tag(pod.country.get_img_url, size: "30") %>
             <br> <%= pod.short_date  %>
-            <br> <%= pod.host_org.get_city_state  %>
+            <br> <%= pod.host_org.city_state  %>
           </div>
         </th>
       <% end %>

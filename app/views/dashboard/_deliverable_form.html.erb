@@ -1,0 +1,16 @@
+<!-- <li> -->
+  <tr>
+    <td>
+      <%= image_tag(pod.country.get_img_url, size: "30") %>
+      <%= pod.country.name %>, <%= pod.host_org.city_state %> -
+      <%= pod.grantee.abbr %>
+    </td>
+    <td width="30px"></td>
+    <td>
+      <%= form_for(task) do |f| %>
+        <%= f.hidden_field :completed, value: true %>
+        <%= f.submit 'Mark Complete', class: "btn btn-primary btn-sm inline" %>
+      <% end %>
+    </td>
+  </tr>
+<!-- </li> -->
