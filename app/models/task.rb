@@ -4,9 +4,9 @@ class Task < ApplicationRecord
   has_many :grantees, through: :pods
 
   # determines if task is due current week
-    def due?
-      due_week == Date.today.cweek ? true : false
-    end
+  def due?
+    due_week == Date.today.cweek ? true : false
+  end
 
   def due_week
     due_date.cweek

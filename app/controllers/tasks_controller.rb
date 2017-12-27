@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   def index
     @task_types = TaskType.all.order(:date_offset)
     @pods = Pod.all.includes(:tasks, :task_types)
+    @month = set_month
   end
 
   # GET /tasks/1
@@ -71,6 +72,10 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:completed)
+    end
+
+    def set_month
+      params[:month] ? params[:month].to_i : Date.today.month
     end
 
 end
