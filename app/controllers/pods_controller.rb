@@ -5,6 +5,7 @@ class PodsController < ApplicationController
   # GET /pods.json
   def index
     @pods = Pod.all.includes(:host_org)
+    @countries = Country.refined_country_list
   end
 
   # GET /pods/1

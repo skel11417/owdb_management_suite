@@ -1,6 +1,5 @@
 class TaskTypesController < ApplicationController
-  before_action :set_task_type, only: [:show, :update, :destroy]
-  before_action :format_date, only: :edit
+  before_action :set_task_type, only: [:show, :edit, :update, :destroy]
   # GET /task_types
   # GET /task_types.json
   def index
@@ -67,10 +66,6 @@ class TaskTypesController < ApplicationController
       @task_type = TaskType.find(params[:id])
     end
 
-    def format_date
-      @task_type = TaskType.find(params[:id])
-
-    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_type_params
       date_offset = params[:task_type][:date_offset].to_i

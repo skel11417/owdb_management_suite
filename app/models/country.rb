@@ -8,4 +8,8 @@ class Country < ApplicationRecord
     "#{id}.ico"
   end
 
+  def self.refined_country_list
+    owlc = joins(:pods).group('countries.id')
+    the_rest = joins(:pods).group('countries.id')
+  end
 end

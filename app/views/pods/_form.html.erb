@@ -12,6 +12,14 @@
   <% end %>
 
   <div class="actions">
+    <%= f.label :date, "Travel Date:" %>
+    <%= f.text_field :travel_date_id, disabled: true, :value => 'Whatever the travel date was' %> </br>
+      <%= f.label :date, "Arrival Date:" %>
+      <%= f.date_field :arr_date, { class: "form-control" } %> </br>
+    <%= f.label :country_id, "Country:" %>
+    <%= f.collection_select :country_id, Country.refined_country_list, :id, :name %>
+    <%= f.label :confirmed, "Confrimed:" %>
+    <%= f.check_box :confirmed, {}, true, false %>
     <%= f.submit %>
   </div>
 <% end %>
