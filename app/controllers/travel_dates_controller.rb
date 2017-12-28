@@ -4,7 +4,8 @@ class TravelDatesController < ApplicationController
   # GET /travel_dates
   # GET /travel_dates.json
   def index
-    @travel_dates = TravelDate.all.order(:date)
+    @year = set_year
+    @travel_dates = TravelDate.for_year(set_year)
   end
 
   # GET /travel_dates/1
@@ -71,5 +72,9 @@ class TravelDatesController < ApplicationController
     def travel_date_params
       # params.fetch(:travel_date, {:date})
       params.require(:travel_date).permit(:date)
+    end
+
+    def set_year
+      params[:year] ? params[:year].to_i : TravelDate.last_year
     end
 end
