@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
-<%= render "topnav" %>
-<%= render partial: 'refactored_checklist', locals: {month: @month} %>
+<h1>Tasks for <%= @year %></h1>
+<%= render partial: "topnav", locals: {month: @month,
+                                      year: @year}  %>
+<p id="notice"><%= notice %></p>
+<%= render partial: 'refactored_checklist', locals: {month: @month,
+                                                    year: @year} %>
 <br>

@@ -5,8 +5,9 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @task_types = TaskType.all.order(:date_offset)
-    @pods = Pod.all.includes(:tasks, :task_types).by_month(set_month)
+    @pods = Pod.all.includes(:tasks, :task_types).for_month_year(set_month, set_year)
     @month = set_month
+    @year = set_year
   end
 
   # GET /tasks/1
@@ -93,6 +94,10 @@ class TasksController < ApplicationController
 
     def set_month
       params[:month] ? params[:month].to_i : Date.today.month
+    end
+
+    def set_year
+      params[:year] ? params[:year].to_i : Date.today.year
     end
 
 

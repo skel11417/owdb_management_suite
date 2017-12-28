@@ -20,9 +20,16 @@ class Pod < ApplicationRecord
     where(task_type_id: task_type.id).first.completed
   end
 
-  def self.by_month(m)
+  def self.for_month(m)
     month = Date.new(2018,m,1)
+    TravelDate.where(:date => start_date..end_date).order(:date)
     where(:arr_date => month..month.end_of_month)
+  end
+
+  def self.for_month_year(m, y)
+    month = Date.new(y,m,1)
+    where(:arr_date => month..month.end_of_month)
+
   end
 
   def confirmed?

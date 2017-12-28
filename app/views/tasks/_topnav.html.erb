@@ -1,11 +1,24 @@
 <table class="table bordered">
 
   <tr>
-    <td colspan="3">2017</td>
+    <td>
+      <% unless year == TravelDate.first_year %>
+        <%= link_to '<<', tasks_url(:year => year - 1, :month => 12) %>
+      <% else %>
+        &nbsp;
+      <% end %>
+    </td>
+
     <% [*1..12].each do |month_num| %>
       <% url = '?month=' + month_num.to_s %>
-      <td><%= link_to Date::MONTHNAMES[month_num], url %></td>
+      <td><%= link_to Date::MONTHNAMES[month_num], tasks_url(:month => month_num, :year => year) %></td>
     <% end %>
-    <td colspan="3">2018</td>
+    <td>
+      <% unless year == TravelDate.final_year %>
+        <%= link_to '>>', tasks_url(:year => year + 1, :month => 1) %>
+      <% else %>
+        &nbsp;
+      <% end %>
+    </td>
   </tr>
 </table>
