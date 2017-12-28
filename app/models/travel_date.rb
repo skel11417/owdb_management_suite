@@ -25,7 +25,7 @@ class TravelDate < ApplicationRecord
     date.year.to_i
   end
 
-  def self.last_year
+  def self.final_year
     TravelDate.order(:date).last.
     date.year.to_i
   end

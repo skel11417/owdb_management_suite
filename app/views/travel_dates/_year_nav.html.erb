@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-1">
+    <% unless year == first_year %>
+      <%= link_to '<<' + prev_year.to_s, travel_dates_url(:year => prev_year) %>
+    <% end %>
+  </div>
+  <div class="col-md-10"></div>
+
+  <div class="col-md-1">
+    <% unless year == final_year %>
+    <%= link_to next_year.to_s + '>>', travel_dates_url(:year => next_year) %>
+      <% end %>
+  </div>
+</div>

@@ -6,6 +6,10 @@ class TravelDatesController < ApplicationController
   def index
     @year = set_year
     @travel_dates = TravelDate.for_year(set_year)
+    @first_year = TravelDate.first_year
+    @final_year = TravelDate.final_year
+    @next_year = @year + 1
+    @prev_year = @year - 1
   end
 
   # GET /travel_dates/1
@@ -75,6 +79,6 @@ class TravelDatesController < ApplicationController
     end
 
     def set_year
-      params[:year] ? params[:year].to_i : TravelDate.last_year
+      params[:year] ? params[:year].to_i : TravelDate.final_year
     end
 end

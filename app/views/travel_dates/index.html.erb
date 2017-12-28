@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
-
-<h1><%= @year %> Travel Dates </h1>
-<p><%= link_to 'New Travel Date', new_travel_date_path %></p>
+<h1 class="text-center"><%= @year %> Travel Dates </h1>
+<!-- put a partial here -->
+<%= render: 'partial', locals: {year: @year,
+                                first_year: @first_year,
+                                last_year: @last_year,
+                                next_year: @next_year,
+                                prev_year: @prev_year} %>
 <br>
+<p><%= link_to 'New Travel Date', new_travel_date_path %></p>
 <% @travel_dates.each do |travel_date| %>
   <%= render partial: "pods", locals: {travel_date: travel_date} %>
   <br>
