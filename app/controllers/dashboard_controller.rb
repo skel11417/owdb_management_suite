@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   def index
     @date = Date.new(2018,1,29)
-    @tasks = TaskType.all
+    @tasks = TaskType.all.includes(:pods)
   end
 
   def update_task

@@ -2,15 +2,12 @@
 <% task_types.each do |task_type| %>
   <% if task_type.tasks_due? %>
     <b><%= task_type.name %>:</b>
-    <!-- <ol> -->
     <table class="fixed">
       <% task_type.tasks.each do |task| %>
         <% if task.due? and task.completed == false %>
-        <!-- Add form for each task -->
             <%= render partial: 'deliverable_form', locals: {task: task, pod: task.pod} %>
         <% end %>
       <% end %>
     </table>
-    <!-- </ol> -->
     <% end %>
 <% end %>
