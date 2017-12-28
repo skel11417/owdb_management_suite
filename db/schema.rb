@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226042519) do
+ActiveRecord::Schema.define(version: 20171228144328) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20171226042519) do
     t.text     "notes"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["id"], name: "index_pods_on_id"
   end
 
   create_table "states", force: :cascade do |t|

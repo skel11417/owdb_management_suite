@@ -1,8 +1,11 @@
-<table>
+<table class="table bordered">
+
   <tr>
+    <td colspan="3">2017</td>
     <% [*1..12].each do |month_num| %>
       <% url = '?month=' + month_num.to_s %>
       <td><%= link_to Date::MONTHNAMES[month_num], url %></td>
     <% end %>
+    <td colspan="3">2018</td>
   </tr>
 </table>

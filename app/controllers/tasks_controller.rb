@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @task_types = TaskType.all.order(:date_offset)
-    @pods = Pod.all.includes(:tasks, :task_types)
+    @pods = Pod.all.includes(:tasks, :task_types).by_month(set_month)
     @month = set_month
   end
 

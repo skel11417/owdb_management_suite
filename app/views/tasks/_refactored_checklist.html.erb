@@ -1,12 +1,11 @@
-<% current_pods = @pods.by_month(month) %>
-<% if current_pods.count > 0 %>
+<% if @pods.count > 0 %>
   <h3 class="text-center"><%= Date::MONTHNAMES[month] %></h3>
   <%= link_to 'New Task', new_task_path %>
     <table class="table table-bordered table-active table-hover">
       <thead>
         <tr>
           <th></th>
-          <% current_pods.each do |pod| %>
+          <% @pods.each do |pod| %>
             <th>
               <div>
                 <%= pod.country.name%> <%= image_tag(pod.country.get_img_url, size: "30") %>
@@ -22,7 +21,7 @@
         <% @task_types.each do |task_type| %>
           <tr>
             <td><%= link_to task_type.name, task_type_path(task_type)  %></td>
-            <% current_pods.each do |pod| %>
+            <% @pods.each do |pod| %>
               <% task = task_type.find_task(pod) %>
                 <% if task_type.task_status(pod) %>
                   <td class="success text-center">

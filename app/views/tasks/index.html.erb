@@ -2,8 +2,5 @@
 
 <h1>Tasks</h1>
 <%= render "topnav" %>
-<%= render partial: 'alt_checklist', locals: {month: @month} %>
-
+<%= render partial: 'refactored_checklist', locals: {month: @month} %>
 <br>
-
-<%= link_to 'New Task', new_task_path %>
