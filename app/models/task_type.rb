@@ -14,6 +14,22 @@ class TaskType < ApplicationRecord
 
   end
 
+  def pre?
+    date_offset < 0
+  end
+
+  def post?
+    date_offset > 0
+  end
+
+  def days_to_weeks
+    if date_offset
+      date_offset > 0 ? (date_offset - 10) / 7 : date_offset / -7
+    else
+      0
+    end
+  end
+
   def due_this_week?(pod)
     find_task(pod).due_date.cweek == Date.today.cweek
   end

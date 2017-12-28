@@ -13,10 +13,16 @@
   <%= f.label :name, "Task Description" %>:
   <%= f.text_field :name %><br />
   <%= f.label :date_offset,"Due" %>:
-  <%= f.number_field :date_offset, min: 0 %>
+  <%= f.number_field :date_offset, min: 0, :value => task_type.days_to_weeks %>
   <br />
-  <%= radio_button("task_type", "timeframe", "pre")  %> weeks in advance
-  <%= radio_button("task_type", "timeframe", "post") %> weeks after
+  <% if task_type.date_offset %>
+    <%= radio_button("task_type", "timeframe", "pre", :checked => task_type.pre? )%> weeks in advance
+    <%= radio_button("task_type", "timeframe", "post", :checked => task_type.post?) %> weeks after
+  <% else %>
+    <%= radio_button("task_type", "timeframe", "pre", :checked => true )%> weeks in advance
+    <%= radio_button("task_type", "timeframe", "post") %> weeks after
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

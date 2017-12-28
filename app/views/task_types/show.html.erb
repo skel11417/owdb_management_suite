@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
 <h3><%= @task_type.name %></h3>
+<p>Due <%= @task_type.days_to_weeks %> weeks
+  <%= @task_type.pre? ? 'in advance' : 'after the program' %>.
+</p>
+
+
 <%= link_to 'Edit', edit_task_type_path(@task_type) %> |
 <%= link_to 'Back', tasks_url %>

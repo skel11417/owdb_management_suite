@@ -1,10 +1,10 @@
 class TaskTypesController < ApplicationController
-  before_action :set_task_type, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_task_type, only: [:show, :update, :destroy]
+  before_action :format_date, only: :edit
   # GET /task_types
   # GET /task_types.json
   def index
-    @task_types = TaskType.all
+    @task_types = TaskType.all.order(:date_offset)
   end
 
   # GET /task_types/1
@@ -27,7 +27,6 @@ class TaskTypesController < ApplicationController
     @task_type = TaskType.new(task_type_params)
     respond_to do |format|
       if @task_type.save
-        #automatically creates associated tasks
         generate_tasks(@task_type)
         format.html { redirect_to @task_type, notice: 'Task type was successfully created.' }
         format.json { render :show, status: :created, location: @task_type }
@@ -42,13 +41,13 @@ class TaskTypesController < ApplicationController
   # PATCH/PUT /task_types/1.json
   def update
     respond_to do |format|
-      # if @task_type.update(task_type_params)
-      #   format.html { redirect_to @task_type, notice: 'Task type was successfully updated.' }
-      #   format.json { render :show, status: :ok, location: @task_type }
-      # else
-      #   format.html { render :edit }
-      #   format.json { render json: @task_type.errors, status: :unprocessable_entity }
-      # end
+      if @task_type.update(task_type_params)
+        format.html { redirect_to @task_type, notice: 'Task type was successfully updated.' }
+        format.json { render :show, status: :ok, location: @task_type }
+      else
+        format.html { render :edit }
+        format.json { render json: @task_type.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -68,6 +67,10 @@ class TaskTypesController < ApplicationController
       @task_type = TaskType.find(params[:id])
     end
 
+    def format_date
+      @task_type = TaskType.find(params[:id])
+
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_type_params
       date_offset = params[:task_type][:date_offset].to_i
