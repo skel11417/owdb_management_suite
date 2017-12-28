@@ -25,9 +25,10 @@ class TaskTypesController < ApplicationController
   # POST /task_types.json
   def create
     @task_type = TaskType.new(task_type_params)
-
     respond_to do |format|
       if @task_type.save
+        #automatically creates associated tasks
+        generate_tasks(@task_type)
         format.html { redirect_to @task_type, notice: 'Task type was successfully created.' }
         format.json { render :show, status: :created, location: @task_type }
       else
@@ -41,13 +42,13 @@ class TaskTypesController < ApplicationController
   # PATCH/PUT /task_types/1.json
   def update
     respond_to do |format|
-      if @task_type.update(task_type_params)
-        format.html { redirect_to @task_type, notice: 'Task type was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task_type }
-      else
-        format.html { render :edit }
-        format.json { render json: @task_type.errors, status: :unprocessable_entity }
-      end
+      # if @task_type.update(task_type_params)
+      #   format.html { redirect_to @task_type, notice: 'Task type was successfully updated.' }
+      #   format.json { render :show, status: :ok, location: @task_type }
+      # else
+      #   format.html { render :edit }
+      #   format.json { render json: @task_type.errors, status: :unprocessable_entity }
+      # end
     end
   end
 
@@ -69,6 +70,26 @@ class TaskTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_type_params
-      params.fetch(:task_type, {})
+      date_offset = params[:task_type][:date_offset].to_i
+      factor = -7
+      trvl_date_offset = 0
+      if params[:task_type][:timeframe] == 'post'
+        factor = 7
+        trvl_date_offset = 10
+      end
+        params[:task_type][:date_offset] = date_offset * factor + trvl_date_offset
+        params[:task_type].delete :timeframe
+        params.require(:task_type).permit(:name, :date_offset)
+    end
+
+    def generate_tasks(task_type)
+      task_type_id = task_type.id
+      Pod.all.each do |pod|
+        t = Task.new
+        t.task_type_id = task_type_id
+        t.pod_id = pod.id
+        t.completed = false
+        t.save
+      end
     end
 end

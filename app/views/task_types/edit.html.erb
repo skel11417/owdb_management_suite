@@ -2,5 +2,5 @@
 
 <%= render 'form', task_type: @task_type %>
 
-<%= link_to 'Show', @task_type %> |
-<%= link_to 'Back', task_types_path %>
+<%= link_to 'Back', task_types_path %> |
+<%= link_to 'Delete Task Type', @task_type, method: :delete, data: { confirm: 'Are you sure you want to delete this task type?' } %>

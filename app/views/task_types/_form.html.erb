@@ -10,7 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.label :name, "Task Description" %>:
+  <%= f.text_field :name %><br />
+  <%= f.label :date_offset,"Due" %>:
+  <%= f.number_field :date_offset, min: 0 %>
+  <br />
+  <%= radio_button("task_type", "timeframe", "pre")  %> weeks in advance
+  <%= radio_button("task_type", "timeframe", "post") %> weeks after
   <div class="actions">
     <%= f.submit %>
   </div>

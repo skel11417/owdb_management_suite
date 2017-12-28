@@ -1,10 +1,17 @@
 class TaskType < ApplicationRecord
+  validates :name, presence: true, length: { in: 6..64 }
+  validates :date_offset, numericality: { only_integer: true }
+  validates_associated :tasks
   has_many :tasks, dependent: :destroy
   has_many :pods, through: :tasks
 
 # designed for checklist logic
   def task_status(pod)
     find_task(pod).completed
+  end
+
+  def timeframe
+
   end
 
   def due_this_week?(pod)
@@ -19,7 +26,6 @@ class TaskType < ApplicationRecord
         false
       end
     end
-
   end
 
 #
