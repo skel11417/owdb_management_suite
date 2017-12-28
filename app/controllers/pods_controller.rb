@@ -4,7 +4,7 @@ class PodsController < ApplicationController
   # GET /pods
   # GET /pods.json
   def index
-    @pods = Pod.all
+    @pods = Pod.all.includes(:host_org)
   end
 
   # GET /pods/1

@@ -4,7 +4,7 @@ class CountriesController < ApplicationController
   # GET /countries
   # GET /countries.json
   def index
-    @countries = Country.all
+    @countries = Country.all.includes(:pods, :host_orgs, :grantees, :cities)
     @pods_by_country = Pod.all.order(:country_id)
   end
 
@@ -20,7 +20,7 @@ class CountriesController < ApplicationController
 
   # GET /countries/1/edit
   def edit
-    
+
   end
 
   # POST /countries
